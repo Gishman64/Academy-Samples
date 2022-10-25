@@ -128,6 +128,10 @@ public class StaticSample {
         var employees = new HashSet<Employee>();
         var depts = new HashSet<Departament>();
 
+        char ic = '3';
+
+        int project = ic;
+
         var n = 2;
         var m = 2000;
 
