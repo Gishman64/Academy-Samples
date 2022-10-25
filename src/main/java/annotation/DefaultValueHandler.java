@@ -22,7 +22,6 @@ public class DefaultValueHandler {
             try {
                 Object fieldValue = field.get(target);
                 if (fieldValue == null) {
-
                     Optional<Constructor<?>> ofStringConstructor = getOfStringConstructor(field.getType());
                     if (ofStringConstructor.isPresent()) {
                         logger.log(Level.INFO, String.format("Field '%s' of type %s has constructor of String.class, build...", field.getName(), field.getType().getSimpleName()));
@@ -35,9 +34,7 @@ public class DefaultValueHandler {
                             m.setAccessible(true);
                             Class<?>[] parameters = m.getParameterTypes();
                             //1 параметр метода и это строковый тип, обязательно статический вызов иначе смысл создавать пустой инстанс
-                            if (parameters.length == 1
-                                    && m.getReturnType().equals(field.getType())
-                                    && Modifier.isStatic(m.getModifiers())) {
+                            if (isStaticFactory(field, m, parameters)) {
                                 logger.log(Level.INFO, "Found field class factory method '" + m.getName() + "'");
                                 Object fieldNewValue = m.invoke(null, present.value());
                                 field.set(target, fieldNewValue);
@@ -52,6 +49,12 @@ public class DefaultValueHandler {
                 e.printStackTrace();
             }
         }
+    }
+
+    private boolean isStaticFactory(Field field, Method m, Class<?>[] parameters) {
+        return parameters.length == 1
+                && m.getReturnType().equals(field.getType())
+                && Modifier.isStatic(m.getModifiers());
     }
 
     private Optional<Constructor<?>> getOfStringConstructor(Class<?> type) {

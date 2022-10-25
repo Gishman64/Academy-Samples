@@ -44,6 +44,20 @@
             <artifactId>reflections</artifactId>
             <version>0.9.10</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.13.1</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.24</version>
+            <scope>provided</scope>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -60,24 +74,26 @@
                     </execution>
                 </executions>
                 <configuration>
+                    <bindingDirectory>src/main/resources/xjb</bindingDirectory>
                     <extension>true</extension>
                     <args>
                         <arg>-XtoString</arg>
                         <arg>-Xequals</arg>
                         <arg>-XhashCode</arg>
+                        <arg>-Xfluent-api</arg>
                         <arg>-Xcopyable</arg>
                     </args>
                     <generatePackage>com.codeinside.xjb</generatePackage>
-<!--                    <bindings>-->
-<!--                        <binding>-->
-<!--                        </binding>-->
-<!--                    </bindings>-->
-<!--                    <bindingDirectory>/src/main/resources/xjb</bindingDirectory>-->
                     <plugins>
                         <plugin>
                             <groupId>org.jvnet.jaxb2_commons</groupId>
                             <artifactId>jaxb2-basics</artifactId>
                             <version>1.11.1</version>
+                        </plugin>
+                        <plugin>
+                            <groupId>net.java.dev.jaxb2-commons</groupId>
+                            <artifactId>jaxb-fluent-api</artifactId>
+                            <version>2.1.8</version>
                         </plugin>
                     </plugins>
                 </configuration>

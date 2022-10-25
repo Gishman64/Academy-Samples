@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soap:Envelope
+        xmlns:soap="http://www.w3.org/2003/05/soap-envelope">
+    <soap:Body>
+        <ns13:IdentificationMeansProcessingResult
+                xmlns:ns13="urn:EEC:R:CT:LS:03:IdentificationMeansProcessingResult:v1.0.0"
+                xmlns="EEC:Interaction:v1.0/1.0"
+                xmlns:ns3="urn:EEC:M:SimpleDataObjects:v0.4.9"
+                xmlns:ns4="urn:EEC:M:ComplexDataObjects:v0.4.9"
+                xmlns:ns5="urn:EEC:M:CT:SimpleDataObjects:v1.4.11"
+                xmlns:ns6="urn:EEC:M:CT:ComplexDataObjects:v1.4.11"
+        >
+            <ns4:EDocHeader>
+                <ns3:InfEnvelopeCode>P.LS.03.MSG.017</ns3:InfEnvelopeCode>
+                <ns3:EDocCode>R.CT.LS.03.012</ns3:EDocCode>
+                <ns3:EDocId>4185db2b-c17f-4968-9aaf-1fb90e38b065</ns3:EDocId>
+                <ns3:EDocRefId>7523b1e0-f3e3-4971-8e99-8c99209d4477</ns3:EDocRefId>
+                <ns3:EDocDateTime>2020-04-09T12:37:23.806+04:00</ns3:EDocDateTime>
+            </ns4:EDocHeader>
+            <ns3:UnifiedCountryCode
+                    codeListId="2021">KG
+            </ns3:UnifiedCountryCode>
+            <ns3:CommodityCode>6403</ns3:CommodityCode>
+            <ns6:IdentificationMeansListDetails>
+                <ns6:IdentificationMeansDetails>
+                    <ns6:IdentificationMeansItemDetails>
+                        <ns5:IdentificationMeansKindCode>301</ns5:IdentificationMeansKindCode>
+                        <ns6:IdentificationMeansDataUnitDetails>
+                            <ns5:AIId>01</ns5:AIId>
+                            <ns5:IdentificationMeansUnitCharacterValueId>04707694467329
+                            </ns5:IdentificationMeansUnitCharacterValueId>
+                        </ns6:IdentificationMeansDataUnitDetails>
+                        <ns6:IdentificationMeansDataUnitDetails>
+                            <ns5:AIId>21</ns5:AIId>
+                            <ns5:IdentificationMeansUnitCharacterValueId>X435ssJPzUnLS
+                            </ns5:IdentificationMeansUnitCharacterValueId>
+                        </ns6:IdentificationMeansDataUnitDetails>
+                    </ns6:IdentificationMeansItemDetails>
+                    <ns6:MarkedGoodsStatusDetails>
+                        <ns5:MarkedGoodsStatusCode>31</ns5:MarkedGoodsStatusCode>
+                    </ns6:MarkedGoodsStatusDetails>
+                    <ns6:ResultDetails>
+                        <ns5:ResultProcessingCode>600</ns5:ResultProcessingCode>
+                    </ns6:ResultDetails>
+                </ns6:IdentificationMeansDetails>
+            </ns6:IdentificationMeansListDetails>
+        </ns13:IdentificationMeansProcessingResult>
+        <SellerDetails>
+            <TaxpayerId>54e6473d-69c0-4416-a11e-102b7176dff6</TaxpayerId>
+            <SubjectBriefName>OOO"corp"</SubjectBriefName>
+            <UnifiedCountryCode>KZ</UnifiedCountryCode>
+        </SellerDetails>
+        <BuyerDetails>
+            <TaxpayerId>54e6473d-69c0-4416-a11e-102b7176dff6</TaxpayerId>
+            <SubjectBriefName>OAO"nextDay"</SubjectBriefName>
+            <UnifiedCountryCode>KG</UnifiedCountryCode>
+        </BuyerDetails>
+    </soap:Body>
+</soap:Envelope>
+
+
+

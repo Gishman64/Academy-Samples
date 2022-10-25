@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:smev="EEC:Interaction:v1.0/1.0"
+           targetNamespace="EEC:Interaction:v1.0/1.0" elementFormDefault="qualified"
+           attributeFormDefault="unqualified">
+    <xs:element name="MessageInfo" type="smev:MessageInfoType">
+        <xs:annotation>
+            <xs:documentation>
+                Формат входящих в адаптер СМЭВ сообщений для отправки в национальный шлюз
+            </xs:documentation>
+        </xs:annotation>
+    </xs:element>
+
+    <xs:complexType name="ReplyToType">
+        <xs:sequence>
+            <xs:element type="xs:string" name="Address" minOccurs="1" maxOccurs="1" nillable="false"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="FaultToType">
+        <xs:sequence>
+            <xs:element type="xs:string" name="Address" minOccurs="1" maxOccurs="1" nillable="false"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="EMessageInfoType">
+        <xs:sequence>
+            <xs:element type="xs:string" name="To" minOccurs="1" maxOccurs="1" nillable="false">
+                <xs:annotation>
+                    <xs:documentation>
+                        Логический адрес получателя электронного сообщения
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element type="smev:ReplyToType" name="ReplyTo" minOccurs="0" maxOccurs="1" nillable="false">
+                <xs:annotation>
+                    <xs:documentation>
+                        Логический адрес отправителя электронного сообщения для обеспечения возможности формирования получателем ответного электронного сообщения
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element type="xs:string" name="Action" minOccurs="1" maxOccurs="1" nillable="false"/>
+            <xs:element name="MessageID" minOccurs="1" maxOccurs="1" nillable="false">
+                <xs:annotation>
+                    <xs:documentation>
+                        Идентификатор электронного сообщения. GUID
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                        <xs:maxLength value="100"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element type="xs:string" name="From" minOccurs="0" maxOccurs="1" nillable="false">
+                <xs:annotation>
+                    <xs:documentation>
+                        Логический адрес отправителя, в адрес которого не может быть отправлено ответное сообщение
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element type="smev:FaultToType" name="FaultTo" minOccurs="0" maxOccurs="1" nillable="false">
+                <xs:annotation>
+                    <xs:documentation>
+                        Заголовок, содержащий логический адрес отправителя, на который должны быть направлены технологические сообщения об ошибках
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element type="xs:string" name="ProcedureID" minOccurs="0" maxOccurs="1" nillable="false">
+                <xs:annotation>
+                    <xs:documentation>
+                        Заголовок-идентификатор экземпляра процедуры общего процесса
+                    </xs:documentation>
+                    <xs:documentation>
+                        Значение заголовка представляет собой строку, состоящую из компонентов, разделенных символом «/». Каждый компонент
+                        представляет собой UUID согласно спецификации RFC 4122
+                        urn:uuid:f8a30dda-8443-4ef9-a367-c36fa39ee1f1/urn:uuid:9273bfae-5269-4e0c-83f0-8ce8b7cd75f6
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element type="xs:anyURI" name="ConversationID" minOccurs="0" maxOccurs="1" nillable="false">
+                <xs:annotation>
+                    <xs:documentation>
+                        Идентификатор экземпляра процедуры общего процесса
+                    </xs:documentation>
+                    <xs:documentation>
+                        Значение идентификатора экземпляра процедуры общего процесса должно быть глобально – уникальными и представлять
+                        собой GUID согласно спецификации RFC 4122
+                        urn:uuid:f81d4fae-7dec-11d0-a765-00a0c91e6bf6
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="RelatesTo" minOccurs="0" maxOccurs="1" nillable="false">
+                <xs:annotation>
+                    <xs:documentation>
+                        Присутствует только в ответных сообщениях и должен содержать значение элемента MessageID исходного сообщения. При
+                        этом поле MessageID должно заполняться новым значением.
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                        <xs:maxLength value="100"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="MessageInfoType">
+        <xs:sequence>
+            <xs:element type="smev:EMessageInfoType" name="EMessageInfo" minOccurs="1" maxOccurs="1" nillable="false"/>
+            <xs:element type="xs:string" name="ContentType" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="MessageInfoResponse" type="xs:string">
+        <xs:annotation>
+            <xs:documentation>
+                Формат ответного сообщения адаптера СМЭВ. Не используется.
+            </xs:documentation>
+        </xs:annotation>
+    </xs:element>
+</xs:schema>

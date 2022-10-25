@@ -2,14 +2,12 @@
 <jaxb:bindings version="2.1"
                xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
                xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
-               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-               xsi:schemaLocation="http://java.sun.com/xml/ns/jaxb http://java.sun.com/xml/ns/jaxb/bindingschema_2_0.xsd">
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema"
+>
+    <jaxb:globalBindings>
+        <jaxb:javaType name="java.time.LocalDateTime"  xmlType="xsi:dateTime" hasNsContext="false"
+                       parseMethod="com.example.sandbox.jaxb.DateAdapter.parseDate"
+                       printMethod="com.example.sandbox.jaxb.DateAdapter.printDate"/>
 
-    <jaxb:globalBindings
-            typesafeEnumMaxMembers="2000"
-            collectionType="java.util.LinkedList"
-            typesafeEnumBase="ShipVia">
-
-        <xjc:serializable uid="1"/>
     </jaxb:globalBindings>
 </jaxb:bindings>
